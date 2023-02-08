@@ -18,8 +18,8 @@ document.getElementById('button').addEventListener('click',function onelook(){
         if (!data[i].word.match(/[-| |0-9|é]/)) {
             if(document.getElementById('checkbox').checked === true){
                 word.push( data[i].word + "\n")
-            }else{word.push( data[i].word)}
-  
+            }else{word.push( data[i].word); }
+        
 }
     
     }
@@ -29,6 +29,7 @@ document.getElementById('button').addEventListener('click',function onelook(){
     document.getElementById('Progress').innerText = (lo+1) + "/"+initial.value.length
     lo++ 
     onelook()
+    if(document.getElementById('checkbox01').checked === true){document.getElementById('word_div').innerText += word.join(" ")}
 }else{
 
     lo = 0
@@ -36,7 +37,7 @@ document.getElementById('button').addEventListener('click',function onelook(){
 
     if(document.getElementById('checkbox01').checked === true){
 
-        document.getElementById('word_div').innerText = word.join(" ")
+        // document.getElementById('word_div').innerText = word.join(" ")
         word = []
     }else{
         if(document.getElementById('btt')){document.getElementById('butt').remove();}
