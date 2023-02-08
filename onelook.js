@@ -37,7 +37,6 @@ document.getElementById('button').addEventListener('click',function onelook(){
 
     if(document.getElementById('checkbox01').checked === true){
 
-        // document.getElementById('word_div').innerText = word.join(" ")
         word = []
     }else{
         if(document.getElementById('btt')){document.getElementById('butt').remove();}
