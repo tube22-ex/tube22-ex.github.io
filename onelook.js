@@ -15,7 +15,7 @@ document.getElementById('button').addEventListener('click',function onelook(){
 })
 .then( function(data) {
     for(i in data){
-        if (!data[i].word.match(/[-| |0-9|é]/)) {
+        if (!data[i].word.match(/['|ó|-| |0-9|é]/)) {
             if(document.getElementById('checkbox').checked === true){
                 word.push( data[i].word + "\n")
             }else{word.push( data[i].word); }
@@ -37,6 +37,7 @@ document.getElementById('button').addEventListener('click',function onelook(){
 
     if(document.getElementById('checkbox01').checked === true){
 
+        // document.getElementById('word_div').innerText = word.join(" ")
         word = []
     }else{
         if(document.getElementById('btt')){document.getElementById('butt').remove();}
