@@ -1,13 +1,15 @@
 let word = []
-let a_z = 'abcdefghijklmnopqrstuvwxyz'
+// let a_z = 'abcdefghijklmnopqrstuvwxyz'
 let lo = 0
 let hatena = '';
 
 
 document.getElementById('button').addEventListener('click',function onelook(){
-    let w_str
+    document.getElementById('word_div').innerText = '';
+
+    let initial = document.getElementById('initial')
     hatena = hatena.padEnd(document.getElementById('len').value -1,"?")
-    fetch('https://api.datamuse.com/words?sp=' + a_z[lo] + hatena +'&max='+document.getElementById('get_word').value)
+    fetch('https://api.datamuse.com/words?sp=' + initial.value[lo] + hatena +'&max='+document.getElementById('get_word').value)
 .then(function (response) {
   return response.json();
 })
@@ -23,14 +25,27 @@ document.getElementById('button').addEventListener('click',function onelook(){
     }
     })
     .then(function () {
-         if(lo <= a_z.length - 1){
-    document.getElementById('Progress').innerText = lo + "/25"
+         if(lo <= initial.value.length - 1){
+    document.getElementById('Progress').innerText = (lo+1) + "/"+initial.value.length
     lo++ 
     onelook()
 }else{
+
+    lo = 0
+    hatena = '';
+
+    if(document.getElementById('checkbox01').checked === true){
+
+        document.getElementById('word_div').innerText = word.join(" ")
+        word = []
+    }else{
+        if(document.getElementById('btt')){document.getElementById('butt').remove();}
+
     
+
     let naka
     let inp = document.createElement('input')
+    inp.id = 'btt'
     inp.type = 'button'
     inp.value = 'ダウンロード'
     document.getElementById('Progress').append(inp)
@@ -51,12 +66,11 @@ document.getElementById('button').addEventListener('click',function onelook(){
           dd.click();
                    
         word = []
-        a_z = 'abcdefghijklmnopqrstuvwxyz'
         lo = 0
         hatena = '';
-
+        
     })
-
+    }
 }
     })
 })
